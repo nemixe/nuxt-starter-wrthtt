@@ -19,36 +19,11 @@ export default {
       this.pdfjsLib.GlobalWorkerOptions.workerSrc =
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
       this.loadPdfFromUrl(
-        'https://assets.stanwith.me/live/msc/27112/iufy7/mbd%20hamstring%20flexibility.pdf'
+        'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf'
       );
     });
   },
   methods: {
-    async initPdfJs() {
-      try {
-        const pdfJS = await import('pdfjs-dist/build/pdf');
-        pdfJS.GlobalWorkerOptions.workerSrc =
-          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-
-        const pdf = await pdfJS.getDocument(
-          'https://assets.stanwith.me/live/msc/27112/iufy7/mbd%20hamstring%20flexibility.pdf'
-        ).promise;
-
-        const page = await pdf.getPage(1);
-        const viewport = page.getViewport({ scale: 1.5 });
-
-        const canvas = this.$refs['pdf-container'];
-        const canvasContext = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        // Render PDF page into canvas context.
-        const renderContext = { canvasContext, viewport };
-        page.render(renderContext);
-      } catch (err) {
-        console.error(err);
-      }
-    },
     loadPdfFromUrl(url) {
       //Read PDF from URL.
       this.pdfjsLib.getDocument(url).promise.then((pdfDoc) => {
