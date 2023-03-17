@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b id="title"> Show PDF Hamstring Flexibility </b>
+    <b id="title"> Show PDF </b>
     <div ref="pdf-container" id="pdf-container"></div>
   </div>
 </template>
@@ -18,9 +18,7 @@ export default {
       this.pdfjsLib = pdfMod;
       this.pdfjsLib.GlobalWorkerOptions.workerSrc =
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-      this.loadPdfFromUrl(
-        'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf'
-      );
+      this.loadPdfFromUrl('/audit-trail.pdf');
     });
   },
   methods: {
